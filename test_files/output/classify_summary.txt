@@ -1,0 +1,3 @@
+Uncharacterized: 2676
+Characterized: 4343
+U+C: 7019
