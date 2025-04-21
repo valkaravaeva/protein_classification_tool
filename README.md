@@ -76,7 +76,7 @@ Biopython has to be installed! It is a dependency!
             to plot stacked barplot per module: use tool_r_stacked_barplot.R, replace the paths to your respective paths
             to plot heatmap of markers modules: use tool_r_heatmap.R, replace the paths to your respective paths
 
-For questions, email: val.karavaeva@univie.ac.at, with the "Question uncharacterized pipeline" in the topic
+For questions, email: email@val-k.science, with the "Question uncharacterized pipeline" in the topic
 
 
 This project has received funding from the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation programme (grant agreement no. 803768)
