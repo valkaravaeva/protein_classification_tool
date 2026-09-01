@@ -288,9 +288,6 @@ marker-module heatmap (this one needs `data/kegg_modules_architecture.txt` set t
    `count_taxa[phyl]` per genome while parsing the taxonomy file (per your confirmation
    of the intended logic).
 
-All four are marked in-code with a `# FIXED:` comment explaining what was wrong and
-what changed, so it's easy to find and double-check against your published results.
-
 ## Found but not yet resolved
 
 None outstanding
@@ -311,9 +308,6 @@ None outstanding
 - `ko_cutoffs.tsv` path is now a Nextflow param (`params.ko_cutoffs`), overridable with
   `--ko_cutoffs` instead of requiring you to overwrite `data/ko_cutoffs.tsv` by hand
   (see "Using custom KO cutoffs")
-- **No other logic was changed**, beyond the four fixes listed above. Every other line
-  of processing logic is identical to the original scripts (verified programmatically,
-  diffed line-by-line, before the fixes were applied).
 
 ## Contact
 
