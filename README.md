@@ -322,6 +322,6 @@ European Union's Horizon 2020 research and innovation programme (grant agreement
 
 ## Note
 
-This documentation has been generated with Claude Sonnet 5, with a subsequent quality control by the author of the pipeline.
+The original documentation has been updated using Claude Sonnet 5, with a subsequent quality control by the author of the pipeline.
 
 This tool was produced as a part of the publication "Navigating the archaeal frontier: insights and projections from bioinformatic pipelines" by Karavaeva et al., which is available as open-access at https://doi.org/10.3389/fmicb.2024.1433224
