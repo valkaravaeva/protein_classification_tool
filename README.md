@@ -1,4 +1,4 @@
-# Archaea genome annotation & KEGG module completeness pipeline
+# Genome annotation & KEGG module completeness pipeline
 
 A Nextflow pipeline (`pipeline.nf`) that takes per-genome HMMER (KO) and InterProScan
 annotations and produces:
