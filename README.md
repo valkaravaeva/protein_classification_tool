@@ -262,55 +262,8 @@ completeness, or `Rscript scripts/r/tool_r_heatmap.R <input> <output>` for the
 marker-module heatmap (this one needs `data/kegg_modules_architecture.txt` set to the
 `manual` module set — see "Choosing a KEGG module set" above).
 
-## Bugs fixed in this pass
-
-1. **`pipeline_analyze_characterized.py` and `pipeline_map_kegg_module.py`** parsed
-   the KEGG module architecture file with `for line in mf: mr = mf.read().split(...)`.
-   The `for` loop consumed the first line before `mf.read()` read (and this code
-   parsed) the remainder of the file in one go, so the first line of the
-   module-architecture file was silently dropped. Fixed to parse the whole file
-   directly, matching `pipeline_prep_cutoffs.py` and
-   `pipeline_calc_kegg_modules_completeness.py`, which never had this bug.
-2. **`pipeline_calc_kegg_modules_completeness.py`** had a duplicated block (the M00617
-   "combination module" fix + the `save_pergenome` write). The first copy capped the
-   summed completeness at 1 (100%); an identical second copy immediately after
-   recomputed the same sum *without* the cap and overwrote the output again, so the
-   *uncapped* value was the one that actually ended up in
-   `modules_presence_per_genome.tsv`. Removed the duplicate; the capped value is now
-   the one that's saved.
-3. **`r/tool_r_heatmap.R`** built its color palette with `length(breaks) - 1`, but the
-   breaks vector was assigned to `breaks1` — `breaks` was never defined, so the script
-   would fail with `object 'breaks' not found` on every run. Fixed to reference
-   `breaks1`.
-4. **`tool_prep_matrices_for_plotting.py`**: `count_taxa` was initialized but never
-   populated, then indexed with `count_taxa[curr_ord]` later to turn raw counts into
-   percentages — a `KeyError` on every run. Restored the missing block that increments
-   `count_taxa[phyl]` per genome while parsing the taxonomy file (per your confirmation
-   of the intended logic).
-
-## Found but not yet resolved
-
-None outstanding
-
-## What changed in this cleanup pass (Python pipeline/tool scripts)
-
-- `sys.argv[N]` positional reads → `argparse`, so every script now has `--help` and
-  named arguments, and can be imported without executing
-- Added a module docstring to every script explaining what it does and (for
-  pipeline scripts) which Nextflow process calls it
-- Wrapped each script's body in `main()` / `if __name__ == "__main__":`
-- `open(f, "w+")` → `open(f, "w")` (cosmetic — these files are never read back)
-- `pipeline.nf` updated to call `scripts/pipeline_*.py` and read from `data/`
-- The R scripts now take CLI arguments, have a usage header comment, and dropped a
-  no-op `mutate(Taxon = Taxon)` in the boxplot script
-- Added `scripts/select_kegg_modules.sh` to automate the manual/original module-set
-  copy step described in the original documentation (see "Choosing a KEGG module set")
-- `ko_cutoffs.tsv` path is now a Nextflow param (`params.ko_cutoffs`), overridable with
-  `--ko_cutoffs` instead of requiring you to overwrite `data/ko_cutoffs.tsv` by hand
-  (see "Using custom KO cutoffs")
-
 ## Contact
-
+  
 Questions about the pipeline: mail@val-k.science (subject: "Question protein characterization
 pipeline").
 
